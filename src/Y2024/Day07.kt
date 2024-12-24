@@ -1,3 +1,5 @@
+package Y2024
+
 fun main() {
     val input = readInput("day07")
     val inputMap = input.map {

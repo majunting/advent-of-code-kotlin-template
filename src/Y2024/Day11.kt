@@ -1,3 +1,6 @@
+package Y2024
+
+import Application
 import kotlin.math.abs
 import kotlin.math.log10
 

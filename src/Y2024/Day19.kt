@@ -1,4 +1,8 @@
-class Day20 : Application {
+package Y2024
+
+import Application
+
+class Day19 : Application {
     override fun run(fileName: String): Pair<Long, Long> {
         val input = readInput(fileName)
 

@@ -1,3 +1,5 @@
+package Y2024
+
 fun main() {
     val inputs = readInput("day03tj")
     val input = inputs.fold("") { acc, str -> acc.plus(str) }

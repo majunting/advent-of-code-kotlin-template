@@ -1,3 +1,7 @@
+package Y2024
+
+import Application
+
 class Day12 : Application {
     private var inputMap = mutableListOf<MutableList<Char>>()
     override fun run(fileName: String): Pair<Long, Long> {

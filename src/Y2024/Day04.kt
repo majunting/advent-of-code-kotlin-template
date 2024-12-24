@@ -1,3 +1,5 @@
+package Y2024
+
 fun main() {
     val inputs = readInput("day04")
     var res = findXmasHorizontal(inputs)

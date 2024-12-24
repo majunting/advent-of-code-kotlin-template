@@ -1,3 +1,7 @@
+package Y2024
+
+import Application
+
 class Day18 : Application {
     var inputMap = mutableListOf<MutableList<Int>>()
     var dimension = 0

@@ -1,3 +1,6 @@
+package Y2024
+
+import Application
 import java.io.BufferedWriter
 import java.io.File
 
@@ -7,7 +10,7 @@ class Day15 : Application {
     var bufferedWriter: BufferedWriter? = null
 
     override fun run(fileName: String): Pair<Long, Long> {
-        bufferedWriter = File("src/resources/$fileName-output.txt").bufferedWriter()
+        bufferedWriter = File("src/Y2024.resources/$fileName-output.txt").bufferedWriter()
         val input = readInput(fileName)
         val emptyListIdx = input.indexOf("")
         val inputMap = input.subList(0, emptyListIdx)

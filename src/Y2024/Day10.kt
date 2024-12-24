@@ -1,3 +1,7 @@
+package Y2024
+
+import Application
+
 class Day10 : Application {
     val directions = listOf(Pair(-1, 0), Pair(0, 1), Pair(1, 0), Pair(0, -1))
     override fun run(fileName: String): Pair<Long, Long> {

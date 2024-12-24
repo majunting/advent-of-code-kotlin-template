@@ -1,3 +1,5 @@
+package Y2024
+
 fun main() {
     val input =
         readInput("day02").map { it.split(" ").toList().map { it.toInt() } }

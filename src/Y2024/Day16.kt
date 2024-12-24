@@ -1,3 +1,7 @@
+package Y2024
+
+import Application
+
 class Day16 : Application {
     val directions = listOf(Pair(-1, 0), Pair(0, 1), Pair(1, 0), Pair(0, -1))
     var inputMap = mutableListOf<MutableList<Char>>()

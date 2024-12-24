@@ -1,3 +1,5 @@
+package Y2024
+
 class Node(
     val value: Int,
     val parent: List<Node> = listOf()

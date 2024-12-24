@@ -1,3 +1,6 @@
+package Y2024
+
+import Application
 import java.io.BufferedWriter
 import java.io.File
 
@@ -15,7 +18,7 @@ class Day14 : Application {
             xlim = 103
             ylim = 101
         }
-        bufferedWriter = File("src/resources/$fileName-output.txt").bufferedWriter()
+        bufferedWriter = File("src/Y2024.resources/$fileName-output.txt").bufferedWriter()
         val input = readInput(fileName)
         val inputPos = input.map {
             Pair(

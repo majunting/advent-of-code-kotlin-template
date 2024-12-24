@@ -4,7 +4,7 @@ Welcome to the Advent of Code[^aoc] Kotlin project created by [%ACTOR%][github] 
 
 In this repository, %ACTOR% is about to provide solutions for the puzzles using [Kotlin][kotlin] language.
 
-If you're stuck with Kotlin-specific questions or anything related to this template, check out the following resources:
+If you're stuck with Kotlin-specific questions or anything related to this template, check out the following Y2024.resources:
 
 - [Kotlin docs][docs]
 - [Kotlin Slack][slack]

@@ -1,3 +1,5 @@
+package Y2024
+
 fun main() {
     val input = readInput("day08")
     val res1 = part1(input)

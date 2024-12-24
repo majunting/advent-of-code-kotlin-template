@@ -4,4 +4,4 @@
 build
 local.properties
 
-src/resources/*-output.txt
+src/Y2024.resources/*-output.txt

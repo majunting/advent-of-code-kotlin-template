@@ -1,3 +1,5 @@
+package Y2024
+
 fun main() {
     var res = 1
     var basePosition = Pair(0, 0)
