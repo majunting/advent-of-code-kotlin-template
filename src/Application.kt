@@ -5,12 +5,12 @@ interface Application {
 }
 
 fun main(args: Array<String>) {
-    val day = 18
-    runApp(day, true)
-    runApp(day, false)
+    val day = 19
+    runApp2024(day, true)
+    runApp2024(day, false)
 }
 
-fun runApp(day: Int, isTest: Boolean = false) {
+fun runApp2024(day: Int, isTest: Boolean = false) {
     val app: Application = chooseClassFromDay2024(day)
     when (isTest) {
         true -> app.run("day${day.toString().padStart(2, '0')}test").printRes(day, true)
