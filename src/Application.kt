@@ -6,7 +6,7 @@ interface Application {
 }
 
 fun main(args: Array<String>) {
-    val day = 25
+    val day = 22
 
     runApp2024(day, true)
     runApp2024(day, false)
