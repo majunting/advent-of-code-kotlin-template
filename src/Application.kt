@@ -1,11 +1,13 @@
 import Y2024.chooseClassFromDay2024
+import Y2024.println
 
 interface Application {
     fun run(fileName: String): Pair<Any, Any>
 }
 
 fun main(args: Array<String>) {
-    val day = 19
+    val day = 20
+
     runApp2024(day, true)
     runApp2024(day, false)
 }
