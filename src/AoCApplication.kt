@@ -5,7 +5,7 @@ interface AocApplication {
 }
 
 fun main(args: Array<String>) {
-    val day = 24
+    val day = 17
 
     runApp2024(day, true)
     runApp2024(day, false)
