@@ -4,6 +4,8 @@ import AocApplication
 
 class Day24 : AocApplication {
     var knowns = mutableMapOf<String, Int>()
+
+    //    index : Pair(operationType, Triple(input1, input2, output))
     var equations = mutableMapOf<Int, Pair<String, Triple<String, String, String>>>()
     var unknowns = mutableListOf<String>()
 
@@ -22,7 +24,10 @@ class Day24 : AocApplication {
             list.add(it.split(" -> ")[0].split(' ')[2])
             list
         }
-        val initialEquations = equations
+        val initialEquations = input.filter { it.contains("->") }.mapIndexed { index, it ->
+            val parts = it.split(" -> ")
+            index to (parts[0].split(' ')[1] to Triple(parts[0].split(' ')[0], parts[0].split(' ')[2], parts[1]))
+        }.toMap().toMutableMap()
         unknowns.minus(knowns.keys)
         val res1 = this.part1()
         val res2 = this.part2(initialEquations)
@@ -77,13 +82,77 @@ class Day24 : AocApplication {
 
         xs.println()
         ys.println()
-        (xs+ys).toString(2).println()
+        (xs + ys).toString(2).println()
         zs.println()
         return res.toLong(2)
     }
 
-    private fun part2(equations: MutableMap<Int, Pair<String, Triple<String, String, String>>>): Any {
-        return 0
+    private fun part2(conditions: MutableMap<Int, Pair<String, Triple<String, String, String>>>): Any {
+//        Check image of full adder in resources
+//        Condition 1: x & y can only be input to AND / XOR gates
+        val wrongCondition1 = conditions.filter {
+            it.value.second.first.startsWith("x") ||
+                    it.value.second.first.startsWith("y") ||
+                    it.value.second.second.startsWith("x") ||
+                    it.value.second.second.startsWith("y")
+        }.filterNot { it.value.first == "AND" || it.value.first == "XOR" }
+        wrongCondition1.println()
+
+//        Condition 2 : z can only be output of XOR gates (except for msb, which is from OR gate)
+        val wrongCondition2 = conditions.filter {
+            it.value.second.third.startsWith("z")
+        }.filterNot { it.value.first == "XOR" }.filterNot { it.value.second.third == "z45" }
+        wrongCondition2.println()
+
+//        Condition 3: bits not from x / y, and bits not outputing z cannot be from XOR gate
+        val wrongCondition3 = conditions.filterNot {
+            it.value.second.third.startsWith("z")
+        }.filterNot {
+            ((it.value.second.first.startsWith("x") ||
+                    it.value.second.first.startsWith("y")) ||
+                    (it.value.second.second.startsWith("x") ||
+                            it.value.second.second.startsWith("y")))
+        }.filter { it.value.first == "XOR" }
+        wrongCondition3.println()
+
+//        All AND gate outputs will only go to OR gate
+        val andOps = conditions.filter {
+            it.value.first == "AND"
+        }
+        val wrongCondition4 = andOps.filter { it ->
+            conditions.filter { con ->
+                con.value.second.first == it.value.second.third || con.value.second.second == it.value.second.third
+            }.filter { newCond -> newCond.value.first == "OR" }.isEmpty()
+        }.filterNot {it -> it.value.second.first == "x00" || it.value.second.first == "y00" }
+        wrongCondition4.println()
+
+//        All OR gate outputs cannot go to another OR gate
+        val orOps = conditions.filter { it.value.first == "OR" }
+        val wrongCondition5 = orOps.filter { it ->
+            conditions.filter { con ->
+                con.value.second.first == it.value.second.third || con.value.second.second == it.value.second.third
+            }.filter { newCond -> newCond.value.first == "OR" }.isNotEmpty()
+        }.filterNot { it.value.second.third == "z45" }
+        wrongCondition5.println()
+
+//        All XOR gate outputs cannot go to OR gate
+        val xorOps = conditions.filter{ it.value.first == "XOR" }
+        val wrongCondition6 = xorOps.filter { it ->
+            conditions.filter { con ->
+                con.value.second.first == it.value.second.third || con.value.second.second == it.value.second.third
+            }.filter { newCond -> newCond.value.first == "OR" }.isNotEmpty()
+        }
+        wrongCondition6.println()
+
+        return wrongCondition1.map { it.value.second.third }
+            .plus(wrongCondition2.map { it.value.second.third })
+            .plus(wrongCondition3.map { it.value.second.third })
+            .plus(wrongCondition4.map { it.value.second.third })
+            .plus(wrongCondition5.map { it.value.second.third })
+            .plus(wrongCondition6.map { it.value.second.third })
+            .distinct().sorted().joinToString(",")
+
+//        return 0
     }
 
     private fun computeLogic(operation: String, first: String, second: String, type: Int): Int {
